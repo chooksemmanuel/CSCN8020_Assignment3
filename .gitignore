@@ -8,5 +8,3 @@ PROJECT_CONTEXT.md
 Unitree_MuJoCo_G1_Primer_Workshop_v0.ipynb
 external/
 logs/
-results/
-*.csv

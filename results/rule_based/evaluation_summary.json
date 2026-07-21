@@ -1,0 +1,65 @@
+{
+  "policy": "rule_based",
+  "name": "rule_based",
+  "checkpoint": null,
+  "evaluation_epsilon": 0.0,
+  "benchmark_goals": [
+    -0.8,
+    -0.4,
+    0.4,
+    0.8
+  ],
+  "episodes_per_goal": 5,
+  "by_goal": {
+    "-0.8": {
+      "episodes": 5,
+      "successes": 5,
+      "success_rate": 1.0,
+      "mean_cumulative_reward": 10.521527701057494,
+      "mean_episode_length": 27.0,
+      "mean_final_absolute_error": 0.012328092101017596,
+      "mean_hold_actions": 17.0,
+      "mean_action_changes": 1.0
+    },
+    "-0.4": {
+      "episodes": 5,
+      "successes": 5,
+      "success_rate": 1.0,
+      "mean_cumulative_reward": 15.21405668091029,
+      "mean_episode_length": 21.0,
+      "mean_final_absolute_error": 0.013217009087764853,
+      "mean_hold_actions": 16.0,
+      "mean_action_changes": 1.0
+    },
+    "+0.4": {
+      "episodes": 5,
+      "successes": 5,
+      "success_rate": 1.0,
+      "mean_cumulative_reward": 15.211074960418046,
+      "mean_episode_length": 21.0,
+      "mean_final_absolute_error": 0.012719840750495037,
+      "mean_hold_actions": 16.0,
+      "mean_action_changes": 1.0
+    },
+    "+0.8": {
+      "episodes": 5,
+      "successes": 5,
+      "success_rate": 1.0,
+      "mean_cumulative_reward": 10.519856926985085,
+      "mean_episode_length": 27.0,
+      "mean_final_absolute_error": 0.0105712357298271,
+      "mean_hold_actions": 17.0,
+      "mean_action_changes": 1.0
+    }
+  },
+  "overall": {
+    "episodes": 20,
+    "successes": 20,
+    "success_rate": 1.0,
+    "mean_cumulative_reward": 12.866629067342728,
+    "mean_episode_length": 24.0,
+    "mean_final_absolute_error": 0.012209044417276146,
+    "mean_hold_actions": 16.5,
+    "mean_action_changes": 1.0
+  }
+}

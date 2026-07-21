@@ -1,0 +1,4 @@
+policy,successes,episodes,success_rate,mean_cumulative_reward,mean_episode_length,mean_final_absolute_error,mean_hold_actions,mean_action_changes
+Selected DQN Config A,20,20,1.0,13.179635346410217,19.5,0.01162997684638449,4.75,6.5
+DQN Config B,20,20,1.0,13.158829327332203,19.75,0.012681070928700397,4.5,6.25
+Rule-based policy,20,20,1.0,12.866629067342728,24.0,0.012209044417276146,16.5,1.0
