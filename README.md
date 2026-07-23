@@ -273,7 +273,7 @@ PYTHONPATH=src python src/train_dqn.py   --config config_b   --episodes 1000   -
 ### Config A
 
 ```bash
-PYTHONPATH=src python src/evaluate_dqn.py   --policy dqn   --checkpoint models/config_a_final.pt   --name config_a   --seed 42
+PYTHONPATH=src python src/evaluate_dqn.py   --policy dqn   --checkpoint models/selected_dqn.pt   --name config_a   --seed 42
 ```
 
 ### Config B
@@ -341,3 +341,25 @@ All commands were run in the student's own environment. Training, evaluation, si
 ## Author
 
 Emmanuel Ihejiamaizu
+
+## Submission Information
+
+- Assignment: CSCN8020 Assignment 3 - Deep Q-Network Control of the Unitree G1 Left Elbow
+- Student: Emmanuel Ihejiamaizu
+- Student ID: 9080005
+- Public repository: https://github.com/chooksemmanuel/CSCN8020_Assignment3
+- Cloneable repository: https://github.com/chooksemmanuel/CSCN8020_Assignment3.git
+- Python version: Python 3.14.4
+- Operating environment: Ubuntu 26.04 LTS under WSL 2
+
+### Run the Jupyter Notebook
+
+    jupyter notebook CSCN8020_Assignment3.ipynb
+
+## Submission Files
+- Completed assignment notebook: `CSCN8020_Assignment3.ipynb`
+
+- Full technical report: `report/Unitree_G1_DQN_Technical_Report_Emmanuel_Ihejiamaizu.pdf`
+- One-page Brightspace PDF: `report/CSCN8020_Assignment3_Brightspace_One_Page_Emmanuel_Ihejiamaizu.pdf`
+- Rendered DQN video: `demo/Unitree_G1_DQN_Demo_Final.mp4`
+- Selected trained checkpoint: `models/selected_dqn.pt`

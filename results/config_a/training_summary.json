@@ -29,6 +29,6 @@
   "optimization_steps": 24051,
   "replay_buffer_size": 24550,
   "metrics_file": "results/config_a/training_metrics.csv",
-  "final_checkpoint": "models/config_a_final.pt",
+  "final_checkpoint": "models/selected_dqn.pt",
   "best_checkpoint": "models/config_a_best.pt"
 }

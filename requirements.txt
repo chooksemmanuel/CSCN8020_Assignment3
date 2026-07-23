@@ -6,3 +6,5 @@ mujoco==3.10.0
 numpy==2.5.1
 pandas==3.0.3
 torch==2.13.0+cpu
+
+notebook==7.6.1

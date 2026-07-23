@@ -1,7 +1,7 @@
 {
   "policy": "dqn",
   "name": "config_a",
-  "checkpoint": "models/config_a_final.pt",
+  "checkpoint": "models/selected_dqn.pt",
   "evaluation_epsilon": 0.0,
   "benchmark_goals": [
     -0.8,
