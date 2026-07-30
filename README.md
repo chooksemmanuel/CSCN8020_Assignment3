@@ -1,4 +1,131 @@
-# Unitree G1 Elbow Control with Deep Q-Networks
+# CSCN8020 Assignment 3 — Deep Q-Network Control of the Unitree G1 Left Elbow
+
+<!-- MANUAL-REVIEW-SNAPSHOT:START -->
+
+## Manual Review Snapshot
+
+| Item | Details |
+|---|---|
+| **Student** | Emmanuel Ihejiamaizu |
+| **Student ID** | 9080005 |
+| **Course** | CSCN8020 — Reinforcement Learning |
+| **Instructor** | Prof. David Espinosa |
+| **Institution** | Conestoga College, Ontario, Canada |
+| **Public repository** | <https://github.com/chooksemmanuel/CSCN8020_Assignment3> |
+| **Clone URL** | `https://github.com/chooksemmanuel/CSCN8020_Assignment3.git` |
+| **Selected model** | [`models/selected_dqn.pt`](models/selected_dqn.pt) |
+| **Demonstration video** | [`demo/Unitree_G1_DQN_Demo_Final.mp4`](demo/Unitree_G1_DQN_Demo_Final.mp4) |
+| **Technical report** | [`report/Unitree_G1_DQN_Technical_Report_Emmanuel_Ihejiamaizu.pdf`](report/Unitree_G1_DQN_Technical_Report_Emmanuel_Ihejiamaizu.pdf) |
+
+### Project Summary
+
+This project implements a student-written PyTorch Deep Q-Network to control the **left elbow of a fixed-base Unitree G1 humanoid in MuJoCo**. The agent observes four values — elbow angle, elbow velocity, target angle, and target error — and chooses one of three discrete actions: decrease, hold, or increase the internal joint-position target used by the approved low-level PD controller.
+
+Two exploration-decay configurations were trained for **1,000 episodes each** using seed 42. Both achieved **20/20 benchmark successes** on the required targets `[-0.8, -0.4, 0.4, 0.8]` radians. Configuration A (`epsilon_decay = 0.995`) was selected because it produced the stronger final evaluation profile: slightly higher mean reward, shorter episodes, and lower final absolute error than Configuration B. The selected DQN also completed the benchmark faster and with a higher mean reward than the rule-based baseline.
+
+### Headline Results
+
+| Metric | Rule-based baseline | Selected DQN — Config A |
+|---|---:|---:|
+| Successes | 20 / 20 | **20 / 20** |
+| Success rate | 100% | **100%** |
+| Mean cumulative reward | 12.8666 | **13.1796** |
+| Mean episode length | 24.00 steps | **19.50 steps** |
+| Mean final absolute error | 0.0122 rad | **0.0116 rad** |
+| Mean HOLD actions | 16.50 | **4.75** |
+
+### Configuration Selection
+
+| Configuration | Epsilon decay | Success | Mean reward | Mean length | Mean final error |
+|---|---:|---:|---:|---:|---:|
+| **A — selected** | 0.995 | **20 / 20** | **13.1796** | **19.50** | **0.0116** |
+| B | 0.985 | 20 / 20 | 13.1588 | 19.75 | 0.0127 |
+
+The selected checkpoint is [`models/selected_dqn.pt`](models/selected_dqn.pt). It is the retained Config A model used for the final greedy evaluation and rendered demonstration.
+
+### Open These First
+
+1. **Completed assignment notebook:** [`CSCN8020_Assignment3.ipynb`](CSCN8020_Assignment3.ipynb)
+2. **Selected checkpoint:** [`models/selected_dqn.pt`](models/selected_dqn.pt)
+3. **Config A evaluation summary:** [`results/config_a/evaluation_summary.json`](results/config_a/evaluation_summary.json)
+4. **Config A training summary:** [`results/config_a/training_summary.json`](results/config_a/training_summary.json)
+5. **Comparison plots:** [`results/plots/`](results/plots/)
+6. **Rendered DQN demonstration:** [`demo/Unitree_G1_DQN_Demo_Final.mp4`](demo/Unitree_G1_DQN_Demo_Final.mp4)
+7. **Full technical report:** [`report/Unitree_G1_DQN_Technical_Report_Emmanuel_Ihejiamaizu.pdf`](report/Unitree_G1_DQN_Technical_Report_Emmanuel_Ihejiamaizu.pdf)
+
+### Fast Manual Reproduction
+
+From the repository root:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+Open the completed assignment notebook:
+
+```bash
+jupyter notebook CSCN8020_Assignment3.ipynb
+```
+
+Evaluate the selected model without retraining:
+
+```bash
+PYTHONPATH=src python src/evaluate_dqn.py \
+  --policy dqn \
+  --checkpoint models/selected_dqn.pt \
+  --name config_a \
+  --seed 42
+```
+
+Render the selected policy:
+
+```bash
+PYTHONPATH=src python src/render_dqn_policy.py \
+  --checkpoint models/selected_dqn.pt \
+  --goals -0.8 0.8 \
+  --seed 42 \
+  --countdown 3 \
+  --step-delay 0.08
+```
+
+### Validated Environment
+
+| Component | Validated version |
+|---|---|
+| Python | 3.14.4 |
+| Operating environment | Ubuntu 26.04 LTS under WSL 2 |
+| Compute | CPU |
+| PyTorch | 2.13.0+cpu |
+| Gymnasium | 1.3.0 |
+| MuJoCo | 3.10.0 |
+| NumPy | 2.5.1 |
+| Pandas | 3.0.3 |
+| Matplotlib | 3.11.1 |
+| Jupyter Notebook | 7.6.1 |
+
+The repository was also validated through a **fresh public clone**, a **new virtual environment**, a clean `requirements.txt` installation, source compilation, checkpoint loading, the full 20-episode evaluation, and end-to-end execution of `CSCN8020_Assignment3.ipynb`.
+
+### Student-Written DQN Components
+
+| Component | File |
+|---|---|
+| Q-network | [`src/g1_rl/dqn/q_network.py`](src/g1_rl/dqn/q_network.py) |
+| Replay buffer | [`src/g1_rl/dqn/replay_buffer.py`](src/g1_rl/dqn/replay_buffer.py) |
+| DQN agent, optimization, target synchronization, checkpoint handling | [`src/g1_rl/dqn/agent.py`](src/g1_rl/dqn/agent.py) |
+| Training loop | [`src/train_dqn.py`](src/train_dqn.py) |
+| Shared DQN / rule-based evaluation | [`src/evaluate_dqn.py`](src/evaluate_dqn.py) |
+| Policy rendering | [`src/render_dqn_policy.py`](src/render_dqn_policy.py) |
+| Custom Gymnasium environment | [`src/g1_rl/g1_elbow_env.py`](src/g1_rl/g1_elbow_env.py) |
+| Rule-based controller and environment test | [`src/test_g1_elbow_env.py`](src/test_g1_elbow_env.py) |
+| Plot generation | [`src/generate_assignment_plots.py`](src/generate_assignment_plots.py) |
+
+No Stable-Baselines3 or other turnkey reinforcement-learning library is used.
+
+<!-- MANUAL-REVIEW-SNAPSHOT:END -->
+
 
 This project applies Deep Q-Learning to a simulated Unitree G1 humanoid robot in MuJoCo.
 
