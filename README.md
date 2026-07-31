@@ -46,6 +46,7 @@ The selected checkpoint is [`models/selected_dqn.pt`](models/selected_dqn.pt). I
 ### Open These First
 
 1. **Completed assignment notebook:** [`CSCN8020_Assignment3.ipynb`](CSCN8020_Assignment3.ipynb)
+   - Sections **1.1–1.4** explicitly map the MDP, reward, Q-values, Bellman target, terminal mask, and Huber loss to the source code and executable verification cells.
 2. **Selected checkpoint:** [`models/selected_dqn.pt`](models/selected_dqn.pt)
 3. **Config A evaluation summary:** [`results/config_a/evaluation_summary.json`](results/config_a/evaluation_summary.json)
 4. **Config A training summary:** [`results/config_a/training_summary.json`](results/config_a/training_summary.json)
